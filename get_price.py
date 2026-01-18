@@ -15,7 +15,7 @@ CHAT_ID = os.getenv("TG_CHAT_ID")
 stocks = ['1558.TW','2330.TW', '2317.TW', 'NVDA']
 
 # --- 抓取股價邏輯 ---
-msg = f"🔔 股價更新時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+msg = f"🔔 目前時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
 
 for symbol in stocks:
     ticker = yf.Ticker(symbol)
