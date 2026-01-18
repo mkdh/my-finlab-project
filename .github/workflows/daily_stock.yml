@@ -1,0 +1,31 @@
+name: Realtime Stock To Telegram
+
+on:
+  schedule:
+    # 台北時間 (UTC+8) 09:00 ~ 14:30 每 30 分鐘執行一次
+    # 對應 UTC 時間為 01:00 ~ 06:30
+    - cron: '0,30 1-6 * * 1-5'
+  workflow_dispatch: # 讓您可以手動點擊執行測試
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 檢出程式碼
+        uses: actions/checkout@v3
+
+      - name: 設定 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 安裝套件
+        run: |
+          pip install yfinance requests
+
+      - name: 執行程式
+        # 這裡是關鍵：將 GitHub Secrets 對接到 Python 的環境變數
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: python get_price.py # 請確認您的 Python 檔名是否為 get_price.py
