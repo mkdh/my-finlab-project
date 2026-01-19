@@ -6,7 +6,6 @@ from datetime import datetime
 import os
 import pytz
 
-print(os.getenv("TG_TOKEN"))
 # --- 設定區 ---
 # 貼上你的 Telegram 機器人 Token 與你的 Chat ID
 TG_TOKEN = os.getenv("TG_TOKEN")
